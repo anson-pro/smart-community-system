@@ -76,7 +76,7 @@
         <Row :gutter="5">
           <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
             <infor-card
-              id-name="user_created_count"
+              id-name="user_count"
               :end-val="count.createUser"
               iconType="android-person"
               color="#2d8cf0"
@@ -85,30 +85,30 @@
           </Col>
           <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
             <infor-card
-              id-name="visit_count"
+              id-name="facility_count"
               :end-val="count.visit"
               iconType="ios-eye"
               color="#64d572"
               :iconSize="50"
-              intro-text="今日浏览量"
+              intro-text="社区设施总数"
             ></infor-card>
           </Col>
           <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
             <infor-card
-              id-name="collection_count"
+              id-name="house_count"
               :end-val="count.collection"
-              iconType="upload"
+              iconType="home"
               color="#ffd572"
-              intro-text="今日数据采集量"
+              intro-text="社区房屋总数"
             ></infor-card>
           </Col>
           <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
             <infor-card
-              id-name="transfer_count"
+              id-name="event_count"
               :end-val="count.transfer"
               iconType="shuffle"
               color="#f25e43"
-              intro-text="今日服务调用量"
+              intro-text="处理事件总数"
             ></infor-card>
           </Col>
         </Row>
@@ -200,26 +200,17 @@ export default {
     return {
       toDoList: [
         {
-          title: '去iView官网学习完整的iView组件',
+          title: '快使用数字化社区管理平台吧',
         },
         {
-          title: '去iView官网学习完整的iView组件',
-        },
-        {
-          title: '去iView官网学习完整的iView组件',
-        },
-        {
-          title: '去iView官网学习完整的iView组件',
-        },
-        {
-          title: '去iView官网学习完整的iView组件',
+          title: '今天也要元气满满哦QAQ',
         },
       ],
       count: {
         createUser: 496,
-        visit: 3264,
-        collection: 24389305,
-        transfer: 39503498,
+        visit: 50,
+        collection: 233,
+        transfer: 122,
       },
       cityData,
       showAddNewTodo: false,

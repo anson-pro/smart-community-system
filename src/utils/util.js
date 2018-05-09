@@ -85,6 +85,14 @@ const formatFacilityName = (row) => {
 // 格式化时间戳
 const formatTimestamp = value => new Date(value).getTime().toString();
 
+const formatPayStatus = (value) => {
+  let result = '待支付';
+  if (value === 1) {
+    result = '已支付';
+  }
+  return result;
+};
+
 // 判断是否为空对象
 const isEmptyObject = obj => Object.keys(obj).length === 0;
 
@@ -105,6 +113,7 @@ export {
   formatWorkerStatus,
   formatFacilityName,
   formatTimestamp,
+  formatPayStatus,
   formatPayStyle,
   isEmptyObject,
   isMobile,

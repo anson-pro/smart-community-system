@@ -1,22 +1,3 @@
-/*
-{
-  "facilityMaintain": [
-  {
-    "id": 1,
-    "facilityId": 1,
-    "operator": "维护人员姓名",
-    "phone": "21412",
-    "maintainTime": 214124,
-    "amount": 3123.231,
-    "maintainAdmin": "admin",
-    "detailInfo": "详细信息",
-    "createTime": 4214,
-    "updateTime": 2414,
-    "isDelete": 0
-  }
-]
-}
-*/
 const Mock = require('mockjs');
 
 const Random = Mock.Random;

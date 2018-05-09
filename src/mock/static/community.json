@@ -1,0 +1,13 @@
+{
+  "community": [
+    {
+      "id": 1,
+      "name": "小区名称",
+      "streetId": 1,
+      "propertyId": 1,
+      "createTime": 41241,
+      "updateTime": 4124,
+      "isDelete": 0
+    }
+  ]
+}

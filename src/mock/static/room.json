@@ -1,0 +1,13 @@
+{
+  "room": [
+    {
+      "id": 1,
+      "unitId": 1,
+      "name": "房间名字",
+      "level": 1,
+      "createTime": 21312,
+      "updateTime": 21412,
+      "isDelete": 0
+    }
+  ]
+}

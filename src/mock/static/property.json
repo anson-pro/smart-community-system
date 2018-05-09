@@ -1,0 +1,12 @@
+{
+  "property": [
+    {
+      "id": 1,
+      "name": "开心物业",
+      "desc": "物业描述",
+      "createTime": 2412,
+      "updateTime": 41241,
+      "isDelete": 0
+    }
+  ]
+}

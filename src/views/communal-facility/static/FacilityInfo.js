@@ -5,7 +5,6 @@ const column = [
     title: '设施名称',
     align: 'center',
     key: 'name',
-    editable: true,
   },
   {
     title: '承建商',

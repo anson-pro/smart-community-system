@@ -1,33 +1,14 @@
-/*
-{
-  "facilityInfo": [
-  {
-    "id": 1,
-    "name": "设施名称",
-    "contractor": "承建商",
-    "phone": 13131,
-    "operator": "负责人",
-    "deliveryTime": "交付时间",
-    "facilityAdmin": "设施管理员",
-    "amount": 2121.121,
-    "createTime": 221412,
-    "updateTime": 321312,
-    "isDelete": 0
-  }
-]
-}
-*/
 const Mock = require('mockjs');
 
 const Random = Mock.Random;
 
 module.exports = (function () {
   const data = {
-    facilityInfos: [],
+    facilities: [],
   };
 
   for (let i = 1; i <= 21; i += 1) {
-    data.facilityInfos.push({
+    data.facilities.push({
       id: i,
       name: Random.cword(5, 10),
       contractor: Random.cword(5, 12),

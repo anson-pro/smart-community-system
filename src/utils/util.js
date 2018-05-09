@@ -73,6 +73,15 @@ const formatWorkerStatus = (value) => {
   }
   return result;
 };
+
+const formatFacilityName = (row) => {
+  let result = '当前设施';
+  if (row.hasOwnProperty('facility') === true) {
+    result = row.facility.name;
+  }
+  return result;
+};
+
 // 格式化时间戳
 const formatTimestamp = value => new Date(value).getTime().toString();
 
@@ -94,6 +103,7 @@ export {
   formatPassword,
   formatPoliticalStatus,
   formatWorkerStatus,
+  formatFacilityName,
   formatTimestamp,
   formatPayStyle,
   isEmptyObject,

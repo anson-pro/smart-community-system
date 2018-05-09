@@ -143,13 +143,6 @@ export const appRouter = [
         component: () => import('@/views/communal-facility/InfoManager.vue')
       },
       {
-        path: 'use',
-        title: '设施使用管理',
-        name: 'use',
-        icon: 'checkmark-circled',
-        component: () => import('@/views/communal-facility/UseManager.vue')
-      },
-      {
         path: 'maintain',
         title: '设施维护管理',
         name: 'maintain',

@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10ff0d2d-45ae-479e-ac6e-9f9ab0f35e1f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/mock/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/static/charge.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/static/community.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/static/facilityInfo.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/static/facilityMaintain.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/static/floor.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/static/notice.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/static/property.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/static/room.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/static/street.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/static/unit.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mock/static/user.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -55,23 +43,9 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ForeignRegister.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/views/foreign-person-register/ForeignRegister.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="16" lean-forward="true" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-              <folding>
-                <element signature="n#style#0;n#Row#0;n#Card#0;n#Col#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#Row#0;n#Card#0;n#Col#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#Select#1;n#div#0;n#Row#0;n#Card#0;n#Col#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#Page#0;n#Row#1;n#Card#0;n#Col#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#FormItem#0;n#Form#0;n#Modal#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#FormItem#1;n#Form#0;n#Modal#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#FormItem#2;n#Form#0;n#Modal#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="e#2951#3016#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="static.js" pinned="false" current-in-tab="false">
@@ -189,7 +163,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/views/communal-facility/MaintainManager.vue" />
         <option value="$PROJECT_DIR$/src/views/publish-notice.vue" />
         <option value="$PROJECT_DIR$/src/views/person-manager.vue" />
         <option value="$PROJECT_DIR$/src/views/publish-notice/PublishNotice.vue" />
@@ -240,6 +213,7 @@
         <option value="$PROJECT_DIR$/src/utils/util.js" />
         <option value="$PROJECT_DIR$/src/views/person-manager/PersonManager.vue" />
         <option value="$PROJECT_DIR$/src/views/foreign-person-register/ForeignRegister.vue" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -425,12 +399,12 @@
       <updated>1525504136175</updated>
       <workItem from="1525504137378" duration="6685000" />
       <workItem from="1525656481619" duration="16639000" />
-      <workItem from="1525691174132" duration="52091000" />
+      <workItem from="1525691174132" duration="52207000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75415000" />
+    <option name="totallyTimeSpent" value="75531000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1002" extended-state="6" />
@@ -475,9 +449,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/build/env.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/webpack.prod.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -798,13 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/person-manager/static.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
@@ -842,6 +806,16 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/worker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

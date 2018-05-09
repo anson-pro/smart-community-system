@@ -11,19 +11,19 @@ const column = [
     align: 'center',
     key: 'password',
     render: (h, params) => h('div', formatPassword(params.row.password)),
-    editable: true,
   },
   {
     title: '姓名',
     align: 'center',
     key: 'name',
+    width: 80,
     editable: true,
   },
   {
     title: '性别',
     align: 'center',
     key: 'gender',
-    editable: true,
+    width: 80,
     render: (h, params) => h('div', formatGender(params.row.gender)),
   },
   {
@@ -48,6 +48,7 @@ const column = [
     title: '职务',
     align: 'center',
     key: 'position',
+    width: 80,
     editable: true,
   },
   {
@@ -66,6 +67,7 @@ const column = [
     title: '状态',
     align: 'center',
     key: 'status',
+    width: 80,
     render: (h, params) => h('div', formatWorkerStatus(params.row.status)),
   },
   {

@@ -10,20 +10,21 @@ const column = [
     title: '密码',
     align: 'center',
     key: 'password',
+    width: 70,
     render: (h, params) => h('div', formatPassword(params.row.password)),
   },
   {
     title: '姓名',
     align: 'center',
     key: 'name',
-    width: 80,
+    width: 70,
     editable: true,
   },
   {
     title: '性别',
     align: 'center',
     key: 'gender',
-    width: 80,
+    width: 65,
     render: (h, params) => h('div', formatGender(params.row.gender)),
   },
   {
@@ -36,6 +37,7 @@ const column = [
     title: '政治面貌',
     align: 'center',
     key: 'politicalStatus',
+    width: 70,
     render: (h, params) => h('div', formatPoliticalStatus(params.row.politicalStatus)),
   },
   {
@@ -67,7 +69,7 @@ const column = [
     title: '状态',
     align: 'center',
     key: 'status',
-    width: 80,
+    width: 70,
     render: (h, params) => h('div', formatWorkerStatus(params.row.status)),
   },
   {

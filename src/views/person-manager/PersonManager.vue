@@ -54,7 +54,7 @@
           </Input>
         </FormItem>
         <FormItem label="密码" prop="password">
-          <Input v-model="addModalData.password" placeholder="请输入密码">
+          <Input v-model="addModalData.password" type="password" placeholder="请输入密码">
           </Input>
         </FormItem>
         <FormItem label="姓名" prop="name">

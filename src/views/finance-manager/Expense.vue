@@ -64,7 +64,7 @@
         <FormItem label="支付时间" prop="payTime">
           <DatePicker
             type="datetime"
-            placeholder="选择进入时间"
+            placeholder="选择支付时间"
             v-model="addModalData.payTime">
           </DatePicker>
         </FormItem>
@@ -178,6 +178,7 @@ export default {
                 this.addModal = false;
                 this.$Message.success('添加成功!');
                 this.fetchData();
+                this.$refs.form.resetFields();
                 this.currentPage = 1;
               }
             }).catch(() => {

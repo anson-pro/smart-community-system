@@ -98,9 +98,8 @@ export default {
   watch: {
     endVal(val) {
       const res = transformValue(val);
-      const endVal = res.val;
       this.unit = res.unit;
-      this.demo.update(endVal);
+      // this.demo.update(endVal);
     },
   },
 };

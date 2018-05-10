@@ -43,9 +43,18 @@
 
     <Modal v-model="addModal" title="添加物业费用信息">
       <Form ref="form" :model="addModalData" :rules="ruleValidate" :label-width="80">
-        <FormItem label="支付原因" prop="reason">
-          <Input v-model="addModalData.reason" placeholder="请输入支付原因">
-          </Input>
+        <FormItem label="房屋ID">
+          <Select
+            v-model="addModalData.roomId"
+            placeholder="请选择房屋ID"
+            style="width: 150px"
+            clearable
+            filterable>
+            <Option
+              v-for="item in addModalData.roomList"
+              :value="item.id"
+              :key="item.id">{{ item.id }}</Option>
+          </Select>
         </FormItem>
         <FormItem label="支付方式">
           <Select
@@ -54,7 +63,7 @@
             style="width: 150px"
             clearable>
             <Option
-              v-for="item in payStyleList"
+              v-for="item in addModalData.payStyleList"
               :value="item.value"
               :key="item.value">
               {{ item.label }}
@@ -67,7 +76,7 @@
         <FormItem label="支付时间" prop="payTime">
           <DatePicker
             type="datetime"
-            placeholder="选择进入时间"
+            placeholder="选择支付时间"
             v-model="addModalData.payTime">
           </DatePicker>
         </FormItem>
@@ -99,9 +108,10 @@
 
 <script>
 import canEditTable from '../tables/components/canEditTable.vue';
-import { column, statusList } from './static/property';
-import { formatTimestamp, isEmptyObject } from '@/utils/util';
+import { column, statusList, payStyleList } from './static/property';
+import { formatTimestamp, formatTimestampAddYear, isEmptyObject } from '@/utils/util';
 import { addCharge, deleteChargeById, updateChargeById, fetchCharges } from '@/api/finance/charge';
+import { fetchRooms } from '@/api/house';
 
 export default {
   name: 'Property',
@@ -125,6 +135,8 @@ export default {
       addModalData: {
         payStyle: '',
         payTime: '',
+        roomId: '',
+        roomList: [],
         reason: '',
         operatorId: '',
         amount: '',
@@ -156,6 +168,7 @@ export default {
     getData() {
       this.column = column;
       this.statusList = statusList;
+      this.addModalData.payStyleList = payStyleList;
       this.fetchData();
     },
     fetchData(params = { type: 0 }) {
@@ -173,7 +186,13 @@ export default {
     },
     // 添加按钮事件
     handleAddEvent() {
-      this.addModal = true;
+      fetchRooms()
+        .then(({ data: { code, data } }) => {
+          if (code === 200) {
+            this.addModalData.roomList = data;
+            this.addModal = true;
+          }
+        });
     },
     // 修改支付状态按钮
     handleEditEvent() {
@@ -209,10 +228,13 @@ export default {
         // 验证表单成功进行请求
         if (valid) {
           const data = {
+            type: 0,
+            roomId: this.addModalData.roomId,
             payStyle: this.addModalData.payStyle,
-            payTime: formatTimestamp(this.addModalData.payTime),
+            chargeTime: formatTimestamp(this.addModalData.payTime),
+            expireTime: formatTimestampAddYear(this.addModalData.payTime),
             amount: this.addModalData.amount,
-            reason: this.addModalData.reason,
+            status: 0,
             operatorId: this.addModalData.operatorId,
           };
           addCharge(data)
@@ -221,6 +243,7 @@ export default {
                 this.addModal = false;
                 this.$Message.success('添加成功!');
                 this.fetchData();
+                this.$refs.form.resetFields();
                 this.currentPage = 1;
               }
             }).catch(() => {

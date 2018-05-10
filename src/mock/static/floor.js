@@ -11,7 +11,7 @@
       "isDelete": 0
     }
   ]
-}*/
+} */
 const Mock = require('mockjs');
 
 const Random = Mock.Random;
@@ -27,7 +27,7 @@ module.exports = (function () {
       // 楼名称
       name: Random.cword(5, 10),
       // 小区 id
-      communityId: Random.integer(1, 20),
+      communityId: Random.integer(1, 2),
       createTime: Random.date('T'),
       updateTime: Random.date('T'),
       isDelete: Random.integer(0, 1),

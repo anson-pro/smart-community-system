@@ -65,7 +65,23 @@ const statusList = [
   },
 ];
 
+const payStyleList = [
+  {
+    value: 0,
+    label: '现金支付',
+  },
+  {
+    value: 1,
+    label: '线上支付',
+  },
+  {
+    value: 2,
+    label: '银行卡支付',
+  },
+];
+
 export {
   column,
   statusList,
+  payStyleList,
 };

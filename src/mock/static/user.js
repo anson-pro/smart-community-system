@@ -40,7 +40,7 @@ module.exports = (function () {
       nation: Random.cword(3, 5),
       roomId: Random.integer(1, 20),
       politicalStatus: Random.integer(0, 2),
-      phone: Random.integer(11),
+      phone: Random.string('number', 11),
       company: Random.cword(5, 7),
       companyLocation: Random.city(true),
       checkInTime: Random.now('T'),

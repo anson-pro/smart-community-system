@@ -256,6 +256,7 @@ export default {
                 this.addModal = false;
                 this.$Message.success('添加成功!');
                 this.fetchData();
+                this.$refs.form.resetFields();
                 this.currentPage = 1;
               }
             }).catch(() => {

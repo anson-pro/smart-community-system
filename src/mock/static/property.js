@@ -7,7 +7,7 @@ module.exports = (function () {
     properties: [],
   };
 
-  for (let i = 1; i <= 21; i += 1) {
+  for (let i = 1; i <= 50; i += 1) {
     data.properties.push({
       id: i,
       // 物业名称

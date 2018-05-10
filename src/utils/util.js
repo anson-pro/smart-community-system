@@ -85,10 +85,29 @@ const formatFacilityName = (row) => {
 // 格式化时间戳
 const formatTimestamp = value => new Date(value).getTime().toString();
 
+const formatTimestampAddYear = (value) => {
+  const date = new Date(value);
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDay();
+  const newDate = new Date(year + 1, month, day);
+
+  return newDate.getTime().toString();
+};
+
+// 格式化支付状态
 const formatPayStatus = (value) => {
   let result = '待支付';
   if (value === 1) {
     result = '已支付';
+  }
+  return result;
+};
+
+const formatRelation = (value) => {
+  let result = '是';
+  if (value === 1) {
+    result = '否';
   }
   return result;
 };
@@ -113,7 +132,9 @@ export {
   formatWorkerStatus,
   formatFacilityName,
   formatTimestamp,
+  formatTimestampAddYear,
   formatPayStatus,
+  formatRelation,
   formatPayStyle,
   isEmptyObject,
   isMobile,

@@ -104,7 +104,7 @@ export default {
     this.articleTitle = localStorage.articleTitle;
     this.tagsList = localStorage.tagsList ? JSON.parse(localStorage.tagsList) : [];
     this.classificationSelected =
-      localStorage.classificationSelected ? JSON.parse(localStorage.classificationSelected) : [];
+        localStorage.classificationSelected ? JSON.parse(localStorage.classificationSelected) : [];
     this.content = localStorage.content;
     this.publishTime = localStorage.publishTime;
   },

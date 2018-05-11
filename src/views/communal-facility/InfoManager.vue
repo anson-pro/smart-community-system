@@ -5,6 +5,7 @@
         <Card dis-hover>
           <Row style="margin-bottom: 10px">
             <Button type="primary" icon="plus" @click="handleAddEvent">添加设施信息</Button>
+            <Button type="primary" icon="ios-download-outline" @click="exportData">导出数据</Button>
             <div style="float: right">
               <Input v-model="name" placeholder="请输入设施名称" style="width: 150px" clearable>
               </Input>
@@ -13,6 +14,8 @@
           </Row>
           <Row>
             <can-edit-table
+              ref="table"
+              filename="设施信息"
               v-model="tableData"
               :columns-list="column"
               @on-change="handleChange"
@@ -136,6 +139,9 @@ export default {
     this.getData();
   },
   methods: {
+    exportData() {
+      this.$refs.table.exportTableData();
+    },
     getData() {
       this.column = column;
       this.fetchData();

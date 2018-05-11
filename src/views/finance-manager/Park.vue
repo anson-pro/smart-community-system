@@ -6,6 +6,7 @@
           <Row style="margin-bottom: 10px">
             <Button type="primary" icon="plus" @click="handleAddEvent">添加停车费用信息</Button>
             <Button type="primary" icon="plus" @click="handleEditEvent">修改支付状态</Button>
+            <Button type="primary" icon="ios-download-outline" @click="exportData">导出数据</Button>
             <div style="float: right">
               <Input v-model="roomId" placeholder="请输入房屋ID" style="width: 150px" clearable>
               </Input>
@@ -22,6 +23,8 @@
           </Row>
           <Row>
             <can-edit-table
+              ref="table"
+              filename="停车费用信息"
               v-model="tableData"
               :columns-list="column"
               @on-change="handleChange"
@@ -165,6 +168,9 @@ export default {
     this.getData();
   },
   methods: {
+    exportData() {
+      this.$refs.table.exportTableData();
+    },
     getData() {
       this.column = column;
       this.statusList = statusList;

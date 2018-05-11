@@ -6,6 +6,7 @@
           <Row style="margin-bottom: 10px">
             <Button type="primary" icon="plus" @click="handleAddEvent">添加户主信息</Button>
             <Button type="primary" icon="plus" @click="handleAddFamilyMember">添加家庭成员信息</Button>
+            <Button type="primary" icon="ios-download-outline" @click="exportData">导出数据</Button>
             <div style="float: right">
               <Select
                 v-model="roomId"
@@ -37,6 +38,8 @@
           </Row>
           <Row>
             <can-edit-table
+              ref="table"
+              filename="用户信息"
               v-model="tableData"
               :columns-list="column"
               @on-change="handleChange"
@@ -372,6 +375,9 @@ export default {
     this.getData();
   },
   methods: {
+    exportData() {
+      this.$refs.table.exportTableData();
+    },
     getData() {
       this.column = column;
       this.relationList = relationList;

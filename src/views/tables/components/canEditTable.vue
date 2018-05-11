@@ -5,7 +5,7 @@
 <template>
   <div>
     <Table
-      :ref="refs"
+      ref="table"
       :columns="columnsList"
       :data="thisTableData"
       @on-current-change="handleCurrentRow"
@@ -140,6 +140,7 @@ export default {
     columnsList: Array,
     value: Array,
     url: String,
+    filename: String,
     editIncell: {
       type: Boolean,
       default: false,
@@ -269,6 +270,11 @@ export default {
     },
     handleCurrentRow(currentData, oldData) {
       this.$emit('on-current-change', currentData, oldData);
+    },
+    exportTableData() {
+      this.$refs.table.exportCsv({
+        filename: this.filename,
+      });
     },
   },
   watch: {

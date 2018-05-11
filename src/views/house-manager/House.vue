@@ -5,6 +5,7 @@
         <Card dis-hover>
           <Row style="margin-bottom: 10px">
             <Button type="primary" icon="plus" @click="handleAddEvent">添加房屋信息</Button>
+            <Button type="primary" icon="ios-download-outline" @click="exportData">导出数据</Button>
             <div style="float: right">
               <Select
                 v-model="unitId"
@@ -26,6 +27,8 @@
           </Row>
           <Row>
             <can-edit-table
+              ref="table"
+              filename="房屋信息"
               v-model="tableData"
               :columns-list="column"
               @on-change="handleChange"
@@ -203,6 +206,9 @@ export default {
     this.getData();
   },
   methods: {
+    exportData() {
+      this.$refs.table.exportTableData();
+    },
     getData() {
       this.column = column;
       fetchUnits()

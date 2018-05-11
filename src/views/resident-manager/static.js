@@ -1,23 +1,17 @@
-import { formatPassword, formatGender, formatDate, formatPoliticalStatus, formatWorkerStatus } from '@/utils/util';
+import { formatGender, formatDate, formatPoliticalStatus, formatRelation } from '@/utils/util';
 
 const column = [
   {
-    title: '账号',
+    title: '房间ID',
     align: 'center',
-    key: 'account',
-  },
-  {
-    title: '密码',
-    align: 'center',
-    key: 'password',
-    width: 70,
-    render: (h, params) => h('div', formatPassword(params.row.password)),
+    key: 'roomId',
+    width: 75,
   },
   {
     title: '姓名',
     align: 'center',
     key: 'name',
-    width: 70,
+    width: 80,
     editable: true,
   },
   {
@@ -37,40 +31,34 @@ const column = [
     title: '政治面貌',
     align: 'center',
     key: 'politicalStatus',
-    width: 70,
+    width: 85,
     render: (h, params) => h('div', formatPoliticalStatus(params.row.politicalStatus)),
   },
   {
     title: '手机号',
     align: 'center',
     key: 'phone',
+    width: 90,
     editable: true,
   },
   {
-    title: '职务',
+    title: '工作地点',
     align: 'center',
-    key: 'position',
-    width: 80,
+    key: 'companyLocation',
     editable: true,
   },
   {
-    title: '工作开始时间',
+    title: '入住时间',
     align: 'center',
-    key: 'beginTime',
-    render: (h, params) => h('div', formatDate(params.row.beginTime)),
+    key: 'checkInTime',
+    render: (h, params) => h('div', formatDate(params.row.checkInTime)),
   },
   {
-    title: '工作结束时间',
+    title: '是否户主',
     align: 'center',
-    key: 'endTime',
-    render: (h, params) => h('div', formatDate(params.row.endTime)),
-  },
-  {
-    title: '状态',
-    align: 'center',
-    key: 'status',
-    width: 70,
-    render: (h, params) => h('div', formatWorkerStatus(params.row.status)),
+    key: 'relation',
+    width: 85,
+    render: (h, params) => h('div', formatRelation(params.row.relation)),
   },
   {
     title: '操作',
@@ -106,18 +94,14 @@ const politicalStatusList = [
   },
 ];
 
-const workerStatusList = [
+const relationList = [
   {
     value: 0,
-    label: '在职',
+    label: '是',
   },
   {
     value: 1,
-    label: '休假',
-  },
-  {
-    value: 2,
-    label: '离职',
+    label: '否',
   },
 ];
 
@@ -125,5 +109,5 @@ export {
   column,
   genderList,
   politicalStatusList,
-  workerStatusList,
+  relationList,
 };

@@ -5,6 +5,7 @@
         <Card dis-hover>
           <Row style="margin-bottom: 10px">
             <Button type="primary" icon="plus" @click="handleAddEvent">添加工作人员信息</Button>
+            <Button type="primary" icon="edit" @click="handleChangeStatus">选中一行改变工作状态</Button>
             <div style="float: right">
               <Select v-model="politicalStatus" placeholder="政治面貌搜索" style="width: 150px" clearable>
                 <Option
@@ -53,7 +54,7 @@
           </Input>
         </FormItem>
         <FormItem label="密码" prop="password">
-          <Input v-model="addModalData.password" placeholder="请输入密码">
+          <Input v-model="addModalData.password" type="password" placeholder="请输入密码">
           </Input>
         </FormItem>
         <FormItem label="姓名" prop="name">
@@ -108,13 +109,27 @@
         <Button type="primary" size="large" @click="handleSubmit">添加</Button>
       </div>
     </Modal>
+    <Modal
+      v-model="statusModal"
+      title="修改工作状态"
+      @on-ok="handleOkStatus"
+      @on-cancel="cancel">
+      <Select v-model="selectedStatus">
+        <Option
+          v-for="item in workerStatusList"
+          :value="item.value"
+          :key="item.value">
+          {{ item.label }}
+        </Option>
+      </Select>
+    </Modal>
   </div>
 </template>
 
 <script>
 import canEditTable from '../tables/components/canEditTable.vue';
 import { column, genderList, politicalStatusList, workerStatusList } from './static';
-import { formatTimestamp, isIdientify } from '@/utils/util';
+import { formatTimestamp, isIdientify, isEmptyObject } from '@/utils/util';
 import { addWorker, deleteWorkerById, updateWorkerById, fetchWorkers } from '@/api/worker';
 
 export default {
@@ -133,6 +148,7 @@ export default {
       workerStatus: '',
       gender: '',
       selectedRow: {},
+      selectedStatus: '',
       politicalStatusList: [],
       workerStatusList: [],
       genderList: [],
@@ -224,13 +240,15 @@ export default {
         // 验证表单成功进行请求
         if (valid) {
           const data = {
+            account: this.addModalData.account,
+            password: this.addModalData.password,
             name: this.addModalData.name,
             gender: this.addModalData.gender,
-            comeTime: formatTimestamp(this.addModalData.comeTime),
             card: this.addModalData.card,
-            age: this.addModalData.age,
-            reason: this.addModalData.reason,
-            operatorId: this.addModalData.operatorId,
+            politicalStatus: this.addModalData.politicalStatus,
+            phone: this.addModalData.phone,
+            beginTime: formatTimestamp(this.addModalData.beginTime),
+            position: this.addModalData.position,
           };
           addWorker(data)
             .then(({ data: { code } }) => {
@@ -238,6 +256,7 @@ export default {
                 this.addModal = false;
                 this.$Message.success('添加成功!');
                 this.fetchData();
+                this.$refs.form.resetFields();
                 this.currentPage = 1;
               }
             }).catch(() => {
@@ -248,6 +267,29 @@ export default {
           this.$Message.error('请确保各项信息填写正确！');
         }
       });
+    },
+    // 改变工作状态按钮事件处理
+    handleChangeStatus() {
+      // 选中行为空提示消息
+      if (isEmptyObject(this.selectedRow)) {
+        this.$Message.warning('请选择一条数据进行修改');
+      } else {
+        this.statusModal = true;
+        this.selectedStatus = this.selectedRow.status;
+      }
+    },
+    // 确认改变工作状态
+    handleOkStatus() {
+      // 更新处理时间及处理状态
+      updateWorkerById(this.selectedRow.id, {
+        status: this.selectedStatus,
+      })
+        .then(({ data: { code } }) => {
+          if (code === 200) {
+            this.$Message.success('修改工作状态成功');
+            this.fetchData();
+          }
+        });
     },
     // 根据 ID 删除当前行数据
     handleDelete(val, index, row) {
@@ -279,7 +321,7 @@ export default {
       } else if (this.politicalStatus !== '') {
         params.politicalStatus = this.politicalStatus;
       } else if (this.workerStatus !== '') {
-        params.workerStatus = this.workerStatus;
+        params.status = this.workerStatus;
       }
       this.fetchData(params);
     },

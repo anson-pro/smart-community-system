@@ -76,8 +76,8 @@
         <Row :gutter="5">
           <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
             <infor-card
-              id-name="user_created_count"
-              :end-val="count.createUser"
+              id-name="user_count"
+              :end-val="count.user"
               iconType="android-person"
               color="#2d8cf0"
               intro-text="社区住户总数"
@@ -85,30 +85,30 @@
           </Col>
           <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
             <infor-card
-              id-name="visit_count"
-              :end-val="count.visit"
+              id-name="facility_count"
+              :end-val="count.facility"
               iconType="ios-eye"
               color="#64d572"
               :iconSize="50"
-              intro-text="今日浏览量"
+              intro-text="社区设施总数"
             ></infor-card>
           </Col>
           <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
             <infor-card
-              id-name="collection_count"
-              :end-val="count.collection"
-              iconType="upload"
+              id-name="house_count"
+              :end-val="count.house"
+              iconType="home"
               color="#ffd572"
-              intro-text="今日数据采集量"
+              intro-text="社区房屋总数"
             ></infor-card>
           </Col>
           <Col :xs="24" :sm="12" :md="6" :style="{marginBottom: '10px'}">
             <infor-card
-              id-name="transfer_count"
-              :end-val="count.transfer"
+              id-name="event_count"
+              :end-val="count.event"
               iconType="shuffle"
               color="#f25e43"
-              intro-text="今日服务调用量"
+              intro-text="处理事件总数"
             ></infor-card>
           </Col>
         </Row>
@@ -116,12 +116,15 @@
           <Card :padding="0">
             <p slot="title" class="card-title">
               <Icon type="map"></Icon>
-              今日服务调用地理分布
+              今日天气情况
             </p>
             <div class="map-con">
               <Col span="10">
-                <map-data-table :cityData="cityData" height="281"
-                                :style-obj="{margin: '12px 0 0 11px'}"></map-data-table>
+                <map-data-table
+                  :cityData="cityData"
+                  height="281"
+                  :style-obj="{margin: '12px 0 0 11px'}">
+                </map-data-table>
               </Col>
               <Col span="14" class="map-incon">
                 <Row type="flex" justify="center" align="middle">
@@ -138,7 +141,7 @@
         <Card>
           <p slot="title" class="card-title">
             <Icon type="android-map"></Icon>
-            上周每日来访量统计
+            社区相关信息统计
           </p>
           <div class="data-source-row">
             <visite-volume></visite-volume>
@@ -149,10 +152,10 @@
         <Card>
           <p slot="title" class="card-title">
             <Icon type="ios-pulse-strong"></Icon>
-            数据来源统计
+            社区婚姻情况统计
           </p>
           <div class="data-source-row">
-            <data-source-pie></data-source-pie>
+            <data-source-pie id="marry-chart" type="marry"></data-source-pie>
           </div>
         </Card>
       </Col>
@@ -160,10 +163,10 @@
         <Card>
           <p slot="title" class="card-title">
             <Icon type="android-wifi"></Icon>
-            各类用户服务调用变化统计
+            社区政治面貌统计
           </p>
           <div class="data-source-row">
-            <user-flow></user-flow>
+            <data-source-pie id="status-chart" type="status"></data-source-pie>
           </div>
         </Card>
       </Col>
@@ -182,6 +185,10 @@ import inforCard from './components/inforCard.vue';
 import mapDataTable from './components/mapDataTable.vue';
 import toDoListItem from './components/toDoListItem.vue';
 import cityData from './map-data/get-city-value';
+import { fetchUsers } from '@/api/user';
+import { fetchFacilityInfos } from '@/api/facility/info';
+import { fetchEvents } from '@/api/event';
+import { fetchRooms } from '@/api/house';
 
 export default {
   name: 'home',
@@ -200,30 +207,23 @@ export default {
     return {
       toDoList: [
         {
-          title: '去iView官网学习完整的iView组件',
+          title: '快使用数字化社区管理平台吧',
         },
         {
-          title: '去iView官网学习完整的iView组件',
-        },
-        {
-          title: '去iView官网学习完整的iView组件',
-        },
-        {
-          title: '去iView官网学习完整的iView组件',
-        },
-        {
-          title: '去iView官网学习完整的iView组件',
+          title: '今天也要元气满满哦QAQ',
         },
       ],
       count: {
-        createUser: 496,
-        visit: 3264,
-        collection: 24389305,
-        transfer: 39503498,
+        user: 0,
+        facility: 0,
+        house: 0,
+        event: 0,
       },
       cityData,
       showAddNewTodo: false,
       newToDoItemValue: '',
+      marryChartOption: {},
+      option: {},
     };
   },
   computed: {
@@ -231,7 +231,36 @@ export default {
       return localStorage.avatorImgPath;
     },
   },
+  created() {
+    this.initCount();
+  },
   methods: {
+    initCount() {
+      fetchUsers()
+        .then(({ data: { code, data } }) => {
+          if (code === 200) {
+            this.count.user = data.length;
+          }
+        })
+        .then(fetchFacilityInfos)
+        .then(({ data: { code, data } }) => {
+          if (code === 200) {
+            this.count.facility = data.length;
+          }
+        })
+        .then(fetchEvents)
+        .then(({ data: { code, data } }) => {
+          if (code === 200) {
+            this.count.event = data.length;
+          }
+        })
+        .then(fetchRooms)
+        .then(({ data: { code, data } }) => {
+          if (code === 200) {
+            this.count.house = data.length;
+          }
+        });
+    },
     addNewToDoItem() {
       this.showAddNewTodo = true;
     },

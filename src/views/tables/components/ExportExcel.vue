@@ -7,15 +7,15 @@
 
 <script>
 export default {
-    name: 'ExportExcel',
-    props: {
-        table: Object
+  name: 'ExportExcel',
+  props: {
+    table: Object,
+  },
+  methods: {
+    handleExportExcel() {
+      this.$emit('exportExcel');
+      // transform(this.table);
     },
-    methods: {
-        handleExportExcel () {
-            this.$emit('exportExcel');
-            // transform(this.table);
-        }
-    }
+  },
 };
 </script>

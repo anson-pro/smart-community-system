@@ -5,6 +5,7 @@
         <Card dis-hover>
           <Row style="margin-bottom: 10px">
             <Button type="primary" icon="plus" @click="handleAddEvent">添加支付费用信息</Button>
+            <Button type="primary" icon="ios-download-outline" @click="exportData">导出数据</Button>
             <div style="float: right">
               <Select v-model="payStyle" placeholder="支付方式" style="width: 150px" clearable>
                 <Option
@@ -19,6 +20,8 @@
           </Row>
           <Row>
             <can-edit-table
+              ref="table"
+              filename="支出费用信息"
               v-model="tableData"
               :columns-list="column"
               @on-change="handleChange"
@@ -64,7 +67,7 @@
         <FormItem label="支付时间" prop="payTime">
           <DatePicker
             type="datetime"
-            placeholder="选择进入时间"
+            placeholder="选择支付时间"
             v-model="addModalData.payTime">
           </DatePicker>
         </FormItem>
@@ -134,6 +137,9 @@ export default {
     this.getData();
   },
   methods: {
+    exportData() {
+      this.$refs.table.exportTableData();
+    },
     getData() {
       this.column = column;
       this.payStyleList = payStyleList;
@@ -178,6 +184,7 @@ export default {
                 this.addModal = false;
                 this.$Message.success('添加成功!');
                 this.fetchData();
+                this.$refs.form.resetFields();
                 this.currentPage = 1;
               }
             }).catch(() => {

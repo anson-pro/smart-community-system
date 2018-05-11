@@ -5,6 +5,7 @@
         <Card dis-hover>
           <Row style="margin-bottom: 10px">
             <Button type="primary" icon="plus" @click="handleAddEvent">添加外来人员信息</Button>
+            <Button type="primary" icon="ios-download-outline" @click="exportData">导出数据</Button>
             <div style="float: right">
               <Select v-model="gender" placeholder="性别搜索" style="width: 150px" clearable>
                 <Option
@@ -19,6 +20,8 @@
           </Row>
           <Row>
             <can-edit-table
+              ref="table"
+              filename="外来人员信息"
               v-model="tableData"
               :columns-list="column"
               @on-change="handleChange"
@@ -144,6 +147,9 @@ export default {
     this.getData();
   },
   methods: {
+    exportData() {
+      this.$refs.table.exportTableData();
+    },
     // 身份证号格式验证
     validateCard(rule, value, callback) {
       if (!isIdientify(value)) {
@@ -198,6 +204,7 @@ export default {
                 this.addModal = false;
                 this.$Message.success('添加成功!');
                 this.fetchData();
+                this.$refs.form.resetFields();
                 this.currentPage = 1;
               }
             }).catch(() => {
